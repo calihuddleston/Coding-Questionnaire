@@ -1,47 +1,38 @@
 body{
     font-family: 'Kdam Thmor Pro', sans-serif;
-    background-color: black;
+    background-color: white;
+}
+
+h2{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -10px;
 }
 
 .game-intro{
     display: flex;
     justify-content: center;
     text-align: center;
-    color: white;
+    color: black;
     margin: 50px;
 }
 
-#strt-header{
-    animation: flip 2s infinite;
-    animation-delay: calc(.2s);
+.button{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
 }
 
 #strt-button{
-    display: block; 
-    margin: 0 auto;
     padding: 10px 50px;
     font-family: 'Kdam Thmor Pro', sans-serif;
-    background-color: white;
-    color: black;
+    background-color: blue;
+    color: white;
     border: ridge 3px rgb(70, 70, 70);
     border-radius: 10px;
-    animation: bttn 4s;
+    margin: 30px;
 }
 
-/* animation inspired by "https://alvarotrigo.com/blog/css-text-animations/" */
-@keyframes flip {
-    0%,80% {
-      transform: rotateY(360deg) 
-    }
 
-    50% {
-        color: red;
-    }
-  }
 
-  @keyframes bttn {
-         100% {
-              background-color: red;
-          color: white;
-          }
-  }
+ 
