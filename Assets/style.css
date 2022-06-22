@@ -1,6 +1,5 @@
 body{
-    font-family: 'Kdam Thmor Pro', sans-serif;
-    background-color: white;
+    font-family: 'Concert One', cursive;
 }
 
 h2{
@@ -14,7 +13,43 @@ h2{
     justify-content: center;
     text-align: center;
     color: black;
+    margin: 30px 20px;
+}
+
+#time-clock{
+    border: solid 2px gray;
+    border-radius: 10px;
+    width: 150px; 
+    color: red;
+    background-color: rgb(132, 208, 246);
+    margin-top: 10px;
+}
+
+#question-container{
+    display: flex; 
+    justify-content: center;
+    align-items: center;
     margin: 50px;
+    flex-direction: column;
+    background-color: rgb(132, 208, 246);
+    color: white;
+    border-radius: 20px;
+    padding: 45px;
+}
+
+.answr-btns{
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    margin: 30px;
+    padding: 10px 50px;
+    font-family: 'Concert One', cursive;
+    font-size: 15px;
+}
+
+#question{
+    margin: 50px; 
+    font-size: 30px;
 }
 
 .button{
@@ -23,16 +58,17 @@ h2{
     align-items: center;
 }
 
-#strt-button{
+#strt-button, #highscores{
     padding: 10px 50px;
-    font-family: 'Kdam Thmor Pro', sans-serif;
-    background-color: blue;
+    font-family: 'Concert One', cursive;
+    font-size: 15px;
+    background-color: rgb(132, 208, 246);
     color: white;
-    border: ridge 3px rgb(70, 70, 70);
     border-radius: 10px;
     margin: 30px;
 }
 
-
-
+.answr-btns:hover{
+    border: solid 2px orange;
+}
  
