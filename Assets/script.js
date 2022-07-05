@@ -1,66 +1,144 @@
 // selected elements from HTML document
-var timeClock = document.getElementById("time-clock");
+const timeClock = document.getElementById("time-clock");
 const startButton = document.getElementById("strt-button");
-var highScore = document.getElementById("highscores");
-var insertQuestion = document.getElementById("question");
-let answerBtns1 = document.getElementById("btns1");
-let answerBtns2 = document.getElementById("btns2");
-let answerBtns3 = document.getElementById("btns3");
-let answerBtns4 = document.getElementById("btns4");
-let btns = document.getElementById("btns");
+const highScore = document.getElementById("highscores");
+const questionContainer = document.getElementById("question-container");
 
+// timer interval variable
 let secondsLeft;
+let shuffledQuestions, currentQuestionIndex;
+let score = 0;
+let userInitials = " ";
 
-var userInitials = " ";
-var score = 0;
-
-let questionsOne = [{
-    question: "How many elements can you apply an ID attribute to?",
-    choiceA: "As many as you want",
-    choiceB: "3",
-    choiceC: "1",
-    choiceD: "128",
-    correctAnswer: "c"
-}];
-
-
-
-
+const displayScore = document.getElementById('score');
+displayScore.textContent = "Score: " + score
 // startGame function is called when the start button is clicked
-function startGame(){ 
+startButton.addEventListener("click", function startGame(){ 
     secondsLeft = 60;
-    startButton.disabled = true;
+    questionCounter = 0;
+    score = 0;
     setTimer(); 
     renderQuestion();
-};
+    
+    shuffledQuestions = questions.sort(() => Math.random() - .5);
+    currentQuestionIndex =0;
+    setNextQuestion();
+})
 
-
-
-
+/* create button and question element, append to document, create for loop for each? */
 function setTimer() {
-   
-var timeInterval = setInterval(function() {
+let timeInterval = setInterval(function() {
     secondsLeft--;
     timeClock.textContent = "Time: " + secondsLeft;
-    if (secondsLeft == 0) {
+    if (secondsLeft === 0) {
          clearInterval(timeInterval);
-         return;
          sendHighScores();
         } 
     }, 1000);
-};
-
-function sendHighScores(){
-    insertQuestion.textContent = "Please add your initials";
-
-    btns.userInput
-    btns.createElement = "input";
-    var userInput = btns.children[0].setAttribute = (userInitials);
-    replaceBtns.appendChild(userInput);
 }
 
+function setNextQuestion() {
+    resetState();
 
-startButton.addEventListener("click", startGame);
-highScore.addEventListener("click", sendHighScores);
-setTimer();
+    showQuestion(shuffledQuestions[currentQuestionIndex]);
+}
+    
+function renderQuestion (question) {
+    let displayQuestion = document.createElement('div');
+    displayQuestion.setAttribute('id', 'question');
+    displayQuestion.innerHTML = questionBank.question;
+    questionContainer.append(displayQuestion);
+
+    question.answers.forEach(answers => {
+        const answrBtn = document.createElement('button');
+        answrBtn.innerText = answers.text;
+        answrBtn.setAttribute('class', 'answr-btns');
+        if (answers.correct) {
+            answrBtn.dataset.correct = answers.correct
+        }
+        answrBtn.addEventListener('click', selectAnswer);
+        questionContainer.append(answrBtn);
+    })
+}
+
+let questionBank = [{
+    question: "JavaScript is an ________ language.",
+    answers: [
+        {text: "Object-oriented", correct: true}, 
+        {text: "Object-based", correct: false}, 
+        {text: "Procedural", correct: false},
+        {text: "None of the above", correct: false}],
+    
+}, {
+    question: "Which of the following keywords is used to define a variable in JavaScript?",
+    answers: [
+        {text: "let", correct: false}, 
+        {text: "var", correct: false}, 
+        {text: "Both A and B", correct: true},
+        {text: "None of the above", correct: false}],
+    
+}, {
+    question: "Which of the following methods is used to access HTML elements using JavaScript?",
+    answers: [
+        {text: "getElementById()", correct: false}, 
+        {text: "getElementByClassName()", correct: false}, 
+        {text: "Both A and B", correct: true}, 
+        {text: "None of the above", correct: false}],
+    
+}, {
+    question: "Which of the following methods can be used to display data in some form using JavaScript?",
+    answers: [
+        {text: "document.write()", correct: false}, 
+        {text: "console.log()", correct: false}, 
+        {text: "window.alert()", correct: false}, 
+        {text: "All of the above", correct: true}],
+    
+}, {
+    question: "How can a datatype be declared to be a constant type?",
+    answers: [
+        {text: "const", correct: true}, 
+        {text: "var", correct: false}, 
+        {text: "let", correct: false}, 
+        {text: "constant", correct: false}],
+    
+}, {
+    question: "When an operator's value is NULL, the typeof returned by the unary operator is:",
+    answers: [
+        {text: "Boolean", correct: false}, 
+        {text: "Undefined", correct: false}, 
+        {text: "Object", correct: true}, 
+        {text: "Integer", correct: false}],
+   
+}, {
+    question: "Which function is used to serialize an object into a JSON string in JavaScript?",
+    answers: [
+        {text: "stringify()", correct: true}, 
+        {text: "parse()", correct: false}, 
+        {text: "convert()", correct: false}, 
+        {text: "None of the above", correct: false}],
+    
+}, {
+    question: "Which of the following are closures in JavaScript?", 
+    answers: [
+        {text: "Variables", correct: false},
+        {text: "Functions", correct: false}, 
+        {text: "Objects", correct: false}, 
+        {text: "All of the above", correct: false}],
+  
+}, {
+    question: "How to stop an interval timer in JavaScript?",
+    answers: [
+        {text: "clearInterval", correct: true}, 
+        {text:"clearTimer", correct: false}, 
+        {text: "intervalOver", correct: false}, 
+        {text: "None of the above", correct: false}],
+  
+}, {
+    question: "How do we write a comment in JavaScript?",
+    answers: [
+        {text: "/* */", correct: false}, 
+        {text: "//", correct: true}, 
+        {text: "#", correct: false}, 
+        {text: "$ $", correct: false}],
+}];
 
